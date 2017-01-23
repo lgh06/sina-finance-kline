@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+var express = require('express')
+var app = express()
+var path = require('path')
+
+app.get('/', function (req, res) {
+  res.send('Hello World!')
+})
+
+
+app.use('/sinafinancesdk/js/chart/h5k.js', express.static(path.join(__dirname,'h5k.js')))
+
+
+app.listen(8402, function () {
+  console.log('Example app listening on port 8402!')
+  console.log('aha!')
+})

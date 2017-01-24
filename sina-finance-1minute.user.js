@@ -16,7 +16,13 @@
 (function() {
     'use strict';
 
-    if(window.opener) return;
+    var openerpath = '';
+    try{
+        openerpath = window.opener? window.opener.location.pathname:'';
+    }catch(e){
+        openerpath = '';
+    }
+    if(window.opener && (window.location.pathname == openerpath)) return;
     function getQueryString(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
         var r = document.location.search.substr(1).match(reg);

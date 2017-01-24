@@ -31,6 +31,13 @@ console.save = function(data, filename){
  }
 })(console)
 
+function getQueryString(name) {
+ var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+ var r = document.location.search.substr(1).match(reg);
+ if (r != null) return unescape(r[2]); return null;
+}
+
+
 xh5_define("datas.t", ["utils.util"], function(e) {
   var t, a, r = e, n = r.load, i = r.tUtil, l = 0 == location.protocol.indexOf("https:"), s = {
     isBond: function(e) {
@@ -571,7 +578,11 @@ xh5_define("datas.t", ["utils.util"], function(e) {
               }, null);
             $.data.td1 = d,
             $.data.td5 = v;
-            console.save(v);  //LGH  v Many days d single day
+            var L_f_date = v[0][0].date.toJSON().substr(0,10).replace(/-/g,'');
+            var L_t_date = v[v.length-1][0].date.toJSON().substr(0,10).replace(/-/g,'');
+
+            console.save(v,getQueryString('symbol')+'-'+L_f_date+'-'+L_t_date+'.json');  //LGH  v Many days d single day
+            //console.log($);
             p[h + e.year + e.month] = $,
             r.isFunc(c) && c($);
           }

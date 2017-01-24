@@ -27,14 +27,10 @@ jQuery('[data-id=KKE_tab_kd]').find('ul').show().find('li:eq(1)').click()
 ```  
 
 
-新浪 历史分时纪录：  
+新浪 历史1分钟K线纪录：  
 http://finance.sina.com.cn/h5charts/tchart.html?symbol=sh600103&date=2014-10-21&rangeselector=true&indicator=tvol  
 
-```  
-$('#prevBtn').click();
-
-$('#nextBtn').click();
-```  
+配置好代理后 配合GreaseMonkey和目录下的.user.js文件使用。
 
 
 

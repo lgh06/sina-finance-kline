@@ -10,10 +10,21 @@
 // @run-at       document-idle
 // ==/UserScript==
 
+
+
+
 (function() {
     'use strict';
+
     if(window.opener) return;
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = document.location.search.substr(1).match(reg);
+        if (r !== null) return unescape(r[2]); return null;
+    }
+
     var $ = jQuery.noConflict();
+    var symbol = getQueryString('symbol') || 'sh600103';
     var year = 2008; //you can modify year.
     var month = 1; //do not modify this.
     var date = 1;//do not modify this.
@@ -21,11 +32,12 @@
         y = y || year;
         m = m || month;
         d = d || date;
-        return `http://finance.sina.com.cn/h5charts/tchart.html?symbol=sh600103&date=${y}-${m}-${d}&rangeselector=true&indicator=tvol`;
+        return `http://finance.sina.com.cn/h5charts/tchart.html?symbol=${symbol}&date=${y}-${m}-${d}&rangeselector=true&indicator=tvol`;
     };
     console.log(window.parent,window.opener);
     var time = 0;
     setInterval(()=>{
+        if(!window.L_DEBUG) return;
         time++;
         if(year >= 2017 && month >= 1 && date>=2) return;
 

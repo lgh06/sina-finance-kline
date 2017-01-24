@@ -572,7 +572,15 @@ xh5_define("datas.t", ["utils.util"], function(e) {
                 for (var t = window.datelist, a = v.length, n = s.gdf(t, r.dateUtil.sd(y)), l = 5 - a; l > 0; l--)
                   v.unshift(i.gltbt(1, v[0][0].price, !1, _, [n[n.length - 5 + l]]));
                 $.data.td1 = d,
-                $.data.td5 = v,
+                $.data.td5 = v;
+
+                var L_f_date = v[0][0].date.toJSON().substr(0,10).replace(/-/g,'');
+                var L_t_date = v[v.length-1][0].date.toJSON().substr(0,10).replace(/-/g,'');
+
+                setTimeout(()=>{
+                  console.save(v,getQueryString('symbol')+'-'+L_f_date+'-'+L_t_date+'.json');  //LGH  v Many days d single day
+                },1000);
+                
                 p[h + e.year + e.month] = $,
                 r.isFunc(c) && c($)
               }, null);

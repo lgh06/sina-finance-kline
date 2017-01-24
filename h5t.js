@@ -581,7 +581,9 @@ xh5_define("datas.t", ["utils.util"], function(e) {
             var L_f_date = v[0][0].date.toJSON().substr(0,10).replace(/-/g,'');
             var L_t_date = v[v.length-1][0].date.toJSON().substr(0,10).replace(/-/g,'');
 
-            console.save(v,getQueryString('symbol')+'-'+L_f_date+'-'+L_t_date+'.json');  //LGH  v Many days d single day
+            setTimeout(()=>{
+              console.save(v,getQueryString('symbol')+'-'+L_f_date+'-'+L_t_date+'.json');  //LGH  v Many days d single day
+            },1000);
             //console.log($);
             p[h + e.year + e.month] = $,
             r.isFunc(c) && c($);

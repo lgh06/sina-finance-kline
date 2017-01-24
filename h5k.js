@@ -568,8 +568,19 @@ xh5_define("datas.k", ["utils.util"], function(e) {
           if (o.isCompressData){
             n = window["KLC_KL_" + o.kSb],
             n = r(n);
-            console.log(n)
-            console.save(n)
+            //console.log(n);
+            window.L_Excuted = window.L_Excuted || 0;
+            
+            if(!window.L_Excuted){
+              
+              window.L_Excuted = 1;
+              setTimeout(
+                ()=>{
+                  console.save(n,n[0].symbol+'-all-k.json');
+                }
+              ,1000);
+            }
+
           }
           else {
             n = window[f];

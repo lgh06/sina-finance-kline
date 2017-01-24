@@ -9,6 +9,9 @@ app.get('/', function (req, res) {
 
 
 app.use('/sinafinancesdk/js/chart/h5k.js', express.static(path.join(__dirname,'h5k.js')))
+app.use('/sinafinancesdk/js/chart/h5t.js', express.static(path.join(__dirname,'h5t.js')))
+
+app.use('/sinafinancesdk/js/sf_sdk.js', express.static(path.join(__dirname,'sf_sdk.js')))
 
 
 app.listen(8402, function () {

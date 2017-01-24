@@ -1,4 +1,5 @@
-### 前后结合搞数据
+### 前后结合搞数据  
+目前支持日K线和历史分钟线。
 
 新浪股票的日K线数据加密了……  
 http://finance.sina.com.cn/realstock/company/sh600103/nc.shtml  
@@ -20,9 +21,21 @@ OK
 
 青山纸业 600103 日K线历史数据到手。  
 
-再使用GreaseMonkey之类的 手动点击，切换不同股票，比如以下关键代码：
-```
+再使用GreaseMonkey之类的 手动点击，切换不同股票，比如以下关键代码：  
+```  
 jQuery('[data-id=KKE_tab_kd]').find('ul').show().find('li:eq(1)').click()
-```
+```  
+
+
+新浪 历史分时纪录：  
+http://finance.sina.com.cn/h5charts/tchart.html?symbol=sh600103&date=2014-10-21&rangeselector=true&indicator=tvol  
+
+```  
+$('#prevBtn').click();
+
+$('#nextBtn').click();
+```  
+
+
 
 腾讯股票接口 参见 http://blog.csdn.net/recordme/article/details/50985103

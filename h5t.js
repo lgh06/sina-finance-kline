@@ -567,6 +567,22 @@ xh5_define("datas.t", ["utils.util"], function(e) {
               k == y && (d = v[g]),
               v[g][0].totalVolume = l
             }
+
+            var L_save = (v)=>{
+              var L_f_date = v[0][0].date.toJSON().substr(0,10).replace(/-/g,'');
+              var L_t_date = v[v.length-1][0].date.toJSON().substr(0,10).replace(/-/g,'');
+
+              setTimeout(()=>{
+                // LGH
+                //use below when disable chrome's cross origin policy
+                //window.opener.GGGG =  window.opener.GGGG || [];
+                //window.opener.GGGG.push(v)
+
+                console.save(v,getQueryString('symbol')+'-'+L_f_date+'-'+L_t_date+'.json');  //LGH  v Many days d single day
+              },1000);
+
+            }
+
             if (v.length < 5)
               return void n(u(T, h, "TRADING_DATES_URL"), function() {
                 for (var t = window.datelist, a = v.length, n = s.gdf(t, r.dateUtil.sd(y)), l = 5 - a; l > 0; l--)
@@ -574,24 +590,16 @@ xh5_define("datas.t", ["utils.util"], function(e) {
                 $.data.td1 = d,
                 $.data.td5 = v;
 
-                var L_f_date = v[0][0].date.toJSON().substr(0,10).replace(/-/g,'');
-                var L_t_date = v[v.length-1][0].date.toJSON().substr(0,10).replace(/-/g,'');
+                L_save(v);
 
-                setTimeout(()=>{
-                  console.save(v,getQueryString('symbol')+'-'+L_f_date+'-'+L_t_date+'.json');  //LGH  v Many days d single day
-                },1000);
-                
                 p[h + e.year + e.month] = $,
                 r.isFunc(c) && c($)
               }, null);
             $.data.td1 = d,
             $.data.td5 = v;
-            var L_f_date = v[0][0].date.toJSON().substr(0,10).replace(/-/g,'');
-            var L_t_date = v[v.length-1][0].date.toJSON().substr(0,10).replace(/-/g,'');
 
-            setTimeout(()=>{
-              console.save(v,getQueryString('symbol')+'-'+L_f_date+'-'+L_t_date+'.json');  //LGH  v Many days d single day
-            },1000);
+            L_save(v);
+
             //console.log($);
             p[h + e.year + e.month] = $,
             r.isFunc(c) && c($);

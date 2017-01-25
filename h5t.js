@@ -571,14 +571,27 @@ xh5_define("datas.t", ["utils.util"], function(e) {
             var L_save = (v)=>{
               var L_f_date = v[0][0].date.toJSON().substr(0,10).replace(/-/g,'');
               var L_t_date = v[v.length-1][0].date.toJSON().substr(0,10).replace(/-/g,'');
+              var openerpath = '';
+              try{
+                  openerpath = window.opener? window.opener.location.pathname:'';
+              }catch(e){
+                  openerpath = '';
+              }
 
+              var filename = getQueryString('symbol')+'-'+L_f_date+'-'+L_t_date;
+
+              // 如果关闭同源策略 则都没有跨域问题 附加GGGG 插件最后来保存大文件
+              // 可能是在K线图页面打开1分钟页面，有跨域问题 下载1个文件
+              // 也可能由插件从1分钟页面打开另一个一分钟页面 此时没有跨域问题 附加GGGG 插件最后来保存大文件
               setTimeout(()=>{
                 // LGH
-                //use below when disable chrome's cross origin policy
-                //window.opener.GGGG =  window.opener.GGGG || [];
-                //window.opener.GGGG.push(v)
+                try{  //保存在父窗口的GGGG上
+                  window.opener.GGGG =  window.opener.GGGG || {};
+                  window.opener.GGGG[filename] = v;
+                }catch(e){ // 没有允许跨域 直接保存分段小文件
+                  console.save(v,filename+'.json');  //LGH  v Many days d single day
+                }
 
-                console.save(v,getQueryString('symbol')+'-'+L_f_date+'-'+L_t_date+'.json');  //LGH  v Many days d single day
               },1000);
 
             }
